@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bat Ball Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Welcome to Bat Ball Game !</h1>
+
+  <button onclick="playBat()">Bat</button>
+  <button onclick="playBall()">Ball</button>
+  <button onclick="playWicket()">Wicket</button>
+<button onclick="localStorage.removeItem('score'); alert('Score reset!');
+score = {win:0, loss:0, draw:0};
+">Reset Score</button>
+  <script>
+    
+    let scorestr = localStorage.getItem('score');
+   let score = JSON.parse(scorestr) || {
+      win: 0,
+      loss: 0,
+      draw: 0
+    };
+    
+    function playBat() {
+      const userChoiceMsg = 'you have chosen bat ⚡';
+      let randomNumber = Math.random() * 3;
+      let computerchoice;
+      if(randomNumber > 0 && randomNumber <=1){
+        computerchoice = 'Bat';
+      } else if(randomNumber > 1 && randomNumber <=2){
+        computerchoice = 'Ball';
+      } else{
+        computerchoice = 'Wicket';
+      }
+      const computerChoiceMsg = 'computer has chosen ' + computerchoice;
+
+      let resultMsg;
+      if (computerchoice === 'Bat') {
+        score.draw++;
+        resultMsg = 'It\'s a Draw 🤝';
+      } else if (computerchoice === 'Ball') {
+        score.win++;
+        resultMsg = 'You Win! 🏆🔥';
+      } else {
+        score.loss++;
+        resultMsg = 'You Lose 😢💔';
+      }
+      localStorage.setItem('score', JSON.stringify(score));
+
+      alert(userChoiceMsg + '\n' + computerChoiceMsg + '\n' + resultMsg +
+            '\nWon: ' + score.win + ' Lost: ' + score.loss + ' Draw: ' + score.draw);
+    }
+
+    function playBall() {
+      const userChoiceMsg = 'you have chosen Ball ⚡';
+      let randomNumber = Math.random() * 3;
+      let computerchoice;
+      if(randomNumber > 0 && randomNumber <=1){
+        computerchoice = 'Bat';
+      } else if(randomNumber > 1 && randomNumber <=2){
+        computerchoice = 'Ball';
+      } else {
+        computerchoice = 'Wicket';
+      }
+
+      const computerChoiceMsg = 'computer has chosen ' + computerchoice;
+      let resultMsg;
+      if (computerchoice === 'Bat') {
+        score.loss++;
+        resultMsg = 'It\'s a Draw 🤝';
+      } else if (computerchoice === 'Ball') {
+        score.draw++;
+        resultMsg = 'You Win! 🏆🔥';
+      } else {
+        score.win++;
+        resultMsg = 'You Lose 😢💔';
+      }
+        localStorage.setItem('score', JSON.stringify(score));
+
+      alert(userChoiceMsg + '\n' + computerChoiceMsg + '\n' + resultMsg +
+            '\nWon: ' + score.win + ' Lost: ' + score.loss + ' Draw: ' + score.draw);
+    }
+
+    function playWicket() {
+      const userChoiceMsg = 'You have chosen Wicket ⚡';
+      let randomNumber = Math.random() * 3;
+      let computerchoice;
+      if (randomNumber <= 1) {
+        computerchoice = 'Bat';
+      } else if (randomNumber <= 2) {
+        computerchoice = 'Ball';
+      } else {
+        computerchoice = 'Wicket';
+      }
+      const computerChoiceMsg = 'Computer has chosen ' + computerchoice;
+
+      let resultMsg;
+      if (computerchoice === 'Bat') {
+        score.win++;
+        resultMsg = 'It\'s a Draw 🤝';
+      } else if (computerchoice === 'Ball') {
+        score.loss++;
+        resultMsg = 'You Win! 🏆🔥';
+      } else {
+        score.draw++;
+        resultMsg = 'You Lose 😢💔';
+      }
+      localStorage.setItem('score', JSON.stringify(score));
+
+
+      alert(userChoiceMsg + '\n' + computerChoiceMsg + '\n' + resultMsg +
+            '\nWon: ' + score.win + ' Lost: ' + score.loss + ' Draw: ' + score.draw);
+    }
+  </script>
+</body>
+</html>
