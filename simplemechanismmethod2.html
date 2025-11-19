@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bat Ball Game</title>
+  <style>
+    body {
+      background: linear-gradient(120deg, #0a0f1d, #1b1b2f);
+      color: #f4c430;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px #f4c430;
+    }
+
+    button {
+      background: #111827;
+      border: 2px solid #f4c430;
+      color: #f4c430;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #f4c430;
+      color: #111827;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Bat Ball Game ⚡</h1>
+
+  <button onclick="playGame('Bat')">Bat</button>
+  <button onclick="playGame('Ball')">Ball</button>
+  <button onclick="playGame('Wicket')">Wicket</button>
+
+  <script>
+    function playGame(userChoice) {
+      const userChoiceMsg = `You have chosen ${userChoice}`;
+
+      let randomNumber = Math.random() * 3;
+      let computerChoice;
+
+      if (randomNumber <= 1) {
+        computerChoice = 'Bat';
+      } else if (randomNumber <= 2) {
+        computerChoice = 'Ball';
+      } else {
+        computerChoice = 'Wicket';
+      }
+
+      const computerChoiceMsg = `Computer has chosen ${computerChoice}`;
+
+      let resultMsg;
+      if (userChoice === computerChoice) {
+        resultMsg = 'It\'s a Draw!';
+      } else if (
+        (userChoice === 'Bat' && computerChoice === 'Ball') ||
+        (userChoice === 'Ball' && computerChoice === 'Wicket') ||
+        (userChoice === 'Wicket' && computerChoice === 'Bat')
+      ) {
+        resultMsg = 'You Win!';
+      } else {
+        resultMsg = 'You Lose!';
+      }
+
+      alert(`${userChoiceMsg}\n${computerChoiceMsg}\n${resultMsg}`);
+    }
+  </script>
+</body>
+</html>
